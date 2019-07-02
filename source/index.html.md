@@ -1,15 +1,11 @@
 ---
-title: API Reference
+title: Elogistic API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - json
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -19,41 +15,95 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Elogistic API References
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+All API Endpoint on this document still in development process and may still change occure
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+**SANDBOX**
+
+**http://54.254.154.42**
 
 # Authentication
 
-> To authorize, use this code:
+## Login
 
-```ruby
-require 'kittn'
+This endpoint will generate access token 
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+### HTTP Request
+
+`POST /api/v1/identity/login`
+
+### Header
+
+None
+
+> *Request*
+
+```json
+{
+	"email" : "developer@gmail.com",
+	"password" : "123456",
+	"fcm" : "HqCFIU4xlnu3aiENbyaUYdrQxPuEa8JaK2I7ZREaZvU3GkIgRoM6"
+}
 ```
 
-```python
-import kittn
+### Payload
 
-api = kittn.authorize('meowmeowmeow')
+Parameter | Description
+--------- | -----------
+email <br> <small>required</small>  | `string` valid email address
+password <br> <small>required</small>  | `string` passwordPage
+fcm <br> <small>optional</small>  | `string` FCM Token (Mobile App)
+
+>  **<span style='color:#04B404'>*200 OK*</span>**
+
+```json
+{
+    "timestamp": "2019-05-29T09:01:01.191+0000",
+    "status": "OK",
+    "statusCode": 200,
+    "message": "OK",
+    "data": {
+        "access_token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZlbG9wZXJAbWFpbC5jb20iLCJhdXRoIjoiU1VQRVJfQURNSU4iLCJpYXQiOjE1NTkxMjA0NjAsImV4cCI6MTU1OTcyNTI2MH0.a9kuuiJ7NqJ3rneuGXNPB8rxsqQQFjw4iUTmw8hNfuSLntbNsggR_u_euecgSEkvmNf5C1GJRRD_wXfAuFZFGQ"
+    }
+}
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+>  **<span style='color:#DF7401'>*400 Bad Request*</span>**
+
+```json
+{
+    "timestamp": "2019-07-02T10:34:20.386+0000",
+    "status": "Not Found",
+    "statusCode": 404,
+    "message": "Email belum terdaftar, silahkan hubungin admin",
+    "data": null
+}
 ```
 
-```javascript
-const kittn = require('kittn');
+>  **<span style='color:#0489B1'>*401 Unauthorized*</span>**
 
-let api = kittn.authorize('meowmeowmeow');
+```json
+{
+    "timestamp": "2019-07-02T10:35:14.299+0000",
+    "status": "Unauthorized",
+    "statusCode": 401,
+    "message": "Email/password anda salah",
+    "data": null
+}
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+>  **<span style='color:#DF0101'>*500 Internal Server Error*</span>** 
+
+```json
+{
+    "timestamp": "2019-07-02T10:35:14.299+0000",
+    "status": "Internal Server Error",
+    "statusCode": 500,
+    "message": "Telah terjadi kesalahan pada sistem",
+    "data": null
+}
+```
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 

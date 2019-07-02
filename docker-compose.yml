@@ -1,0 +1,8 @@
+version: '3.5'
+services:
+  app:
+    build: .
+    ports:
+      - 8090:4567
+    volumes:
+      - ./source:/usr/src/app/source
