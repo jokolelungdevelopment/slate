@@ -105,15 +105,75 @@ fcm <br> <small>optional</small>  | `string` FCM Token (Mobile App)
 }
 ```
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+##  Logout
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+This endpoint will invoke access token database 
 
-`Authorization: meowmeowmeow`
+### HTTP Request
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+`POST /api/v1/identity/logout`
+
+### Header
+
+`Authorization: Bearer [access_token]`
+
+Parameter | Description
+--------- | -----------
+Authorization <br> <small>required</small>  | Access Token
+
+> *Request*
+
+### Payload
+
+None
+
+>  **<span style='color:#04B404'>*200 OK*</span>**
+
+```json
+{
+    "timestamp": "2019-07-02T13:10:04.724+0000",
+    "status": "OK",
+    "statusCode": 200,
+    "message": "OK",
+    "data": null
+}
+```
+
+>  **<span style='color:#0489B1'>*401 Unauthorized*</span>**
+
+```json
+{
+    "timestamp": "2019-07-02T10:35:14.299+0000",
+    "status": "Unauthorized",
+    "statusCode": 401,
+    "message": "Expired JWT token",
+    "data": null
+}
+```
+
+>  **<span style='color:#0489B1'>*401 Unauthorized*</span>**
+
+```json
+{
+    "timestamp": "2019-07-02T13:12:00.096+0000",
+    "status": "Unauthorized",
+    "statusCode": 401,
+    "message": "Invalid JWT token.",
+    "data": null
+}
+```
+
+>  **<span style='color:#DF0101'>*500 Internal Server Error*</span>** 
+
+```json
+{
+    "timestamp": "2019-07-02T10:35:14.299+0000",
+    "status": "Internal Server Error",
+    "statusCode": 500,
+    "message": "Telah terjadi kesalahan pada sistem",
+    "data": null
+}
+```
 
 # Kittens
 
