@@ -175,6 +175,100 @@ None
 }
 ```
 
+## Who Am I
+
+This endpoint will get user info based access token
+
+### HTTP Request
+
+`GET /api/v1/identity/whoami`
+
+### Header
+
+`Authorization: Bearer [access_token]`
+
+Parameter | Description
+--------- | -----------
+Authorization <br> <small>required</small>  | Access Token
+
+> *Request*
+
+
+
+### Payload
+
+None
+
+>  **<span style='color:#04B404'>*200 OK*</span>**
+
+```json
+{
+    "timestamp": "2019-07-02T13:20:24.367+0000",
+    "status": "OK",
+    "statusCode": 200,
+    "message": "OK",
+    "data": {
+        "createdBy": "admin",
+        "createdAt": 1562052023000,
+        "id": 1,
+        "username": "developer",
+        "email": "developer@mail.com",
+        "role": "SUPER_ADMIN",
+        "msisdn": "0987654321",
+        "activated": true,
+        "imageUrl": "http://placehold.it/100",
+        "averageRating": 0,
+        "client": {
+            "createdBy": "admin",
+            "createdAt": 1562052502000,
+            "id": 1,
+            "name": "Developer",
+            "code": "Developer",
+            "type": "DEVELOPER",
+            "status": "active",
+            "averageRating": 3,
+            "imageUrl": "http://placehold.it/100"
+        }
+    }
+}
+```
+
+>  **<span style='color:#0489B1'>*401 Unauthorized*</span>**
+
+```json
+{
+    "timestamp": "2019-07-02T10:35:14.299+0000",
+    "status": "Unauthorized",
+    "statusCode": 401,
+    "message": "Expired JWT token",
+    "data": null
+}
+```
+
+>  **<span style='color:#0489B1'>*401 Unauthorized*</span>**
+
+```json
+{
+    "timestamp": "2019-07-02T13:12:00.096+0000",
+    "status": "Unauthorized",
+    "statusCode": 401,
+    "message": "Invalid JWT token.",
+    "data": null
+}
+```
+
+>  **<span style='color:#DF0101'>*500 Internal Server Error*</span>** 
+
+```json
+{
+    "timestamp": "2019-07-02T10:35:14.299+0000",
+    "status": "Internal Server Error",
+    "statusCode": 500,
+    "message": "Telah terjadi kesalahan pada sistem",
+    "data": null
+}
+```
+
 # Kittens
 
 ## Get All Kittens
